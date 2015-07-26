@@ -23,7 +23,7 @@ function love.load()
 	pausedtime,start=0,love.timer.getTime()
 	fonts={}
 	for _,v in ipairs(love.filesystem.getDirectoryItems("fonts")) do
-		fonts[string.gsub(v,"%..","")]=love.graphics.newFont("fonts/"..v)
+		fonts[string.gsub(v,"%..+","")]=love.graphics.newFont("fonts/"..v)
 	end
 	keys=World.loadFile("controls") --loads controls, maybe should have a superclass for World which has the load function
 end
