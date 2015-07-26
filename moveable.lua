@@ -89,7 +89,7 @@ function Moveable:draw()
 	love.graphics.draw(self.sprite,self.x,self.y,0,self.xscl,self.yscl)
 end
 
-function Moveable:isMoving()
+function Moveable:isAccelerating()
 	return self.ax~=0 or self.ay~=0
 end
 
