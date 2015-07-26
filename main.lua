@@ -33,7 +33,7 @@ function love.load()
 		end
 	end
 
-	keys=World.loadFile("controls") --loads controls, maybe should have a superclass for World which has the load function
+	keys=World.loadFile("config/controls") --loads controls, maybe should have a superclass for World which has the load function
 end
 
 function love.update(dt)
