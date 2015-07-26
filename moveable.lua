@@ -54,7 +54,7 @@ function Moveable:update(dt)
 		self.x=self.x+self.vx
 		self.y=self.y+self.vy					--position+velocity
 		
-		if self:isMoving() then
+		if self:isAccelerating() then
 			self.cta=self.cta+dt
 			if self.cta>self.ta then
 				if self.ia<=3 then
