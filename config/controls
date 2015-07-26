@@ -3,5 +3,5 @@ down=s
 right=d
 left=a
 debug=f3
-quit=escape
-pause=q
+quit=7
+pause=escape
