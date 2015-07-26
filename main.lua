@@ -12,6 +12,8 @@ local fonts
 local function round(num) return math.floor(num+0.5) end
 
 local function playtime() return math.floor(love.timer.getTime()-pausedtime-start) end
+local function loadfonts(a)
+end	
 
 function love.load()
 	world=World.loadFile("worlds/testworld",true)
@@ -22,13 +24,15 @@ function love.load()
 	debug,paused=false,false
 	pausedtime,start=0,love.timer.getTime()
 	fonts={}
-
 	local fontsizes=world.loadFile("config/fontsizes")
-
 	for _,v in ipairs(love.filesystem.getDirectoryItems("fonts")) do
 		local file=string.gsub(v,"%..+","")
-		fonts[file]=love.graphics.newFont("fonts/"..v,fontsizes[file])
+		local extension=string.sub(v, string.len(v)-3,string.len(v))
+		if extension == ".ttf" or extension ==".ttc" or extension == ".otf"  then
+	 		fonts[file]=love.graphics.newFont("fonts/"..v,fontsizes[file])
+		end
 	end
+
 	keys=World.loadFile("controls") --loads controls, maybe should have a superclass for World which has the load function
 end
 
