@@ -67,24 +67,24 @@ local function pauseddraw()
 end
 
 function love.keypressed(key)
-	if key==keys.up then
+	if key==tostring(keys.up) then
 		world.player.ay=world.player.ay-world.a
-	elseif key==keys.down then
+	elseif key==tostring(keys.down) then
 		world.player.ay=world.player.ay+world.a
-	elseif key==keys.left then
+	elseif key==tostring(keys.left) then
 		world.player.ax=world.player.ax-world.a
-	elseif key==keys.right then
+	elseif key==tostring(keys.right) then
 		world.player.ax=world.player.ax+world.a
-	elseif key==keys.debug then
+	elseif key==tostring(keys.debug) then
 		debug=not debug
-	elseif key==keys.pause then
+	elseif key==tostring(keys.pause) then
 		paused=not paused
 		love.update,pausedupdate=pausedupdate,love.update
 		love.draw,pauseddraw=pauseddraw,love.draw
         	if paused and world.music then
         		world.pauseMusic()
         	else world.resumeMusic() end
-	elseif key==keys.quit then
+	elseif key==tostring(keys.quit) then
 		love.event.push("quit")
 	end
 end
