@@ -1,0 +1,9 @@
+name=côbalt testworld
+f=0.90
+a=.7
+g=0
+threshold=64
+~player='sprites/robots/',t,t,128,128,18,54
+~object1='sprites/tile.png',t,f,256,192,64,64
+~object2='sprites/tile.png',t,f,700,266,128,128
+~object3='sprites/mosstile.png',t,f,350,512,128,128
