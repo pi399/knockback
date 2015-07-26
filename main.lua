@@ -43,14 +43,14 @@ function love.draw()
 	world:draw()
 	
 	if debug then
-		
-		love.graphics.setColor(0,0,0)	love.graphics.setFont(fonts.oxygenmono)
+		love.graphics.setColor(100,100,255) love.graphics.rectangle("fill",10,10,300,100)
+		love.graphics.setColor(255,255,255)	love.graphics.setFont(fonts.oxygenmono)
 		love.graphics.print(
 			"world name: "..world.name..
 			"\nx: "..round(world.player.x)..", y: "..round(world.player.y)..", ia: "..world.player.ia..
 			"\ntx: "..round(world.tx)..", ty: "..round(world.ty)..
 			"\nfps: "..love.timer.getFPS()..", debug: "..tostring(debug)..", paused: "..tostring(paused)..
-			"\nplaytime: "..playtime().." seconds",10,10)
+			"\nplaytime: "..playtime().." seconds",20,20)
 	end
 end
 
