@@ -59,7 +59,6 @@ function love.draw()
 			health=health-.1
 		end
 	end
-
 end
 
 local function pauseddraw()
