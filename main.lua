@@ -12,8 +12,6 @@ local health = 300
 local function round(num) return math.floor(num+0.5) end
 
 local function playtime() return math.floor(love.timer.getTime()-pausedtime-start) end
-local function loadfonts(a)
-end	
 
 function love.load()
 	world=World.loadFile("worlds/testworld",true)
