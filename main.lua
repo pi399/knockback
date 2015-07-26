@@ -8,7 +8,7 @@ local world,keys
 local pausedtime,start
 local debug,paused
 local fonts
-
+local health = 300
 local function round(num) return math.floor(num+0.5) end
 
 local function playtime() return math.floor(love.timer.getTime()-pausedtime-start) end
@@ -55,7 +55,13 @@ function love.draw()
 			"\ntx: "..round(world.tx)..", ty: "..round(world.ty)..
 			"\nfps: "..love.timer.getFPS()..", debug: "..tostring(debug)..", paused: "..tostring(paused)..
 			"\nplaytime: "..playtime().." seconds",20,20)
+	else 
+		love.graphics.setColor(255,0,0) love.graphics.rectangle("fill",10,10,health,10)
+		if health>0 then
+			health=health-.1
+		end
 	end
+
 end
 
 local function pauseddraw()
