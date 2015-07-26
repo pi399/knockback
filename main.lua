@@ -22,8 +22,12 @@ function love.load()
 	debug,paused=false,false
 	pausedtime,start=0,love.timer.getTime()
 	fonts={}
+
+	local fontsizes=world.loadFile("config/fontsizes")
+
 	for _,v in ipairs(love.filesystem.getDirectoryItems("fonts")) do
-		fonts[string.gsub(v,"%..+","")]=love.graphics.newFont("fonts/"..v)
+		local file=string.gsub(v,"%..+","")
+		fonts[file]=love.graphics.newFont("fonts/"..v,fontsizes[file])
 	end
 	keys=World.loadFile("controls") --loads controls, maybe should have a superclass for World which has the load function
 end
@@ -39,6 +43,7 @@ function love.draw()
 	world:draw()
 	
 	if debug then
+		
 		love.graphics.setColor(0,0,0)	love.graphics.setFont(fonts.oxygenmono)
 		love.graphics.print(
 			"world name: "..world.name..
