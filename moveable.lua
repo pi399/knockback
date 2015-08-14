@@ -1,13 +1,17 @@
 local Moveable={}
 local Sprite=require "sprite"
+local World=World
 local love=love
 local ipairs=ipairs
+
+local mt={__index=Moveable}
 
 	--[[arguments to Moveable.new are as follows (defaults, where applicable, are in [brackets]):
 		world: the world table that includes the Moveable
 		spritepath string:	path to an image or a folder of images. If it is a folder, the folder
 							must contain files named in the format: directionindex.png e.g. "down1.png"
 							if no valid path is provided, [love.graphics.newCanvas()] is used instead
+		worldfollows boolean:	whether the world follows the created object [false]
 		collidable boolean:	whether the Moveable can collide with other Moveables [false]
 		moveable boolean:	whether the Moveable can move or not [false]
 		x:	initial position on x axis [0]
@@ -22,15 +26,17 @@ local ipairs=ipairs
 		dir: initial direction for the animation ["down"] (if dir="up", then "up1.png" will be used initially)
 		ta: amount of time between animations [.1] ]]
 
-function Moveable.new(world,spritepath,mc,mm,mx,my,mxl,myl,mvx,mvy,max,may,mia,mdir,mta)
+function Moveable.new(world,spritepath,worldfollows,mc,mm,mx,my,mxl,myl,mvx,mvy,max,may,mia,mdir,mta)
 	local sprite,sprites,mxscl,myscl=Sprite.newSpriteField(spritepath,mxl,myl,mia,mdir)
 	
-	local mc,mm,mx,my,mxl,myl,mxscl,myscl,mvx,mvy,max,may,mia,mdir,mta
-			=	mc or false,mm or false,mx or 0,my or 0,mxl or 1,myl or 1,mxscl or 1,myscl or 1,
+	local mc,worldfollows,mm,mx,my,mxl,myl,mxscl,myscl,mvx,mvy,max,may,mia,mdir,mta
+			=	mc or false,worldfollows or false,mm or false,mx or 0,my or 0,mxl or 1,myl or 1,mxscl or 1,myscl or 1,
 				mvx or 0,mvy or 0,max or 0,may or 0,mia or 1,mdir or "down",mta or .1
 	local m={collidable=mc,moveable=mm,x=mx,y=my,cx=mcx,cy=mcy,xl=mxl,yl=myl,xscl=mxscl,yscl=myscl,vx=mvx,vy=mvy,ax=max,ay=may,
 		world=world,xcollisioncount={},ycollisioncount={},ia=mia,ta=mta,cta=0,dir=mdir,pdir=dir,sprite=sprite,sprites=sprites}
-	setmetatable(m,{__index=Moveable})
+	
+	if worldfollows then world.follow=m end
+	setmetatable(m,mt)
 	world[#world+1]=m	--inserts the moveable into a new index in the world
 	return m
 end

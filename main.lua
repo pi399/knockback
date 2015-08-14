@@ -1,6 +1,6 @@
 require "TEsound"			local TEsound=TEsound
-Moveable=require "moveable"	local Moveable=Moveable
 World=require "world"		local World=World
+Moveable=require "moveable"	local Moveable=Moveable
 local love=love
 local ipairs=ipairs
 
@@ -14,8 +14,7 @@ local function round(num) return math.floor(num+0.5) end
 local function playtime() return math.floor(love.timer.getTime()-pausedtime-start) end
 
 function love.load()
-	world=World.loadFile("worlds/testworld",true)
-	world:follow(world.player)
+	world=World.loadFile("worlds/testworld",true) --change this for a new world
 	love.graphics.setBackgroundColor(255,255,255)
 	
 	math.randomseed(os.time())

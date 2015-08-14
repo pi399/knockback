@@ -89,11 +89,6 @@ function World:draw()
 	love.graphics.translate(-self.tx,-self.ty)
 end
 
-function World:follow(ma)
-	self.follow=ma
-end
-
-
 function World:playMusic() TEsound.playLooping(self.music,"world") end
 function World:pauseMusic() TEsound.pause("world") end
 function World:resumeMusic() TEsound.resume("world") end
