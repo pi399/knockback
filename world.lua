@@ -66,14 +66,14 @@ function World:update(dt)
 	end
 	
 	if self.follow then
-		if self.follow.y+self.follow.yl+self.ty>=love.window.getHeight()-(self.downthreshold or self.threshold) and self.follow.vy>0 then
-			self.ty=-(self.follow.y+self.follow.yl+(self.downthreshold or self.threshold)-love.window.getHeight())
+		if self.follow.y+self.follow.yl+self.ty>=love.graphics.getHeight()-(self.downthreshold or self.threshold) and self.follow.vy>0 then
+			self.ty=-(self.follow.y+self.follow.yl+(self.downthreshold or self.threshold)-love.graphics.getHeight())
 		elseif self.follow.y+self.ty<=(self.upthreshold or self.threshold) and self.follow.vy<0 then
 			self.ty=-(self.follow.y-(self.upthreshold or self.threshold))
 		end
 		
-		if self.follow.x+self.follow.xl+self.tx>=love.window.getWidth()-(self.rightthreshold or self.threshold) and self.follow.vx>0 then
-			self.tx=-(self.follow.x+self.follow.xl+(self.rightthreshold or self.threshold)-love.window.getWidth())
+		if self.follow.x+self.follow.xl+self.tx>=love.graphics.getWidth()-(self.rightthreshold or self.threshold) and self.follow.vx>0 then
+			self.tx=-(self.follow.x+self.follow.xl+(self.rightthreshold or self.threshold)-love.graphics.getWidth())
 		elseif self.follow.x+self.tx<=(self.leftthreshold or self.threshold) and self.follow.vx<0 then
 			self.tx=-(self.follow.x-(self.leftthreshold or self.threshold))
 		end
